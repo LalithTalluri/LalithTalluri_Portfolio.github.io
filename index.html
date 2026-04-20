@@ -15,208 +15,319 @@
   --panel2:#fdf9f2;
   --gold:#c9942a;
   --gold2:#e8b84b;
-  --gold3:rgba(201,148,42,0.15);
-  --dark:#1a1208;
-  --dark2:#2d2010;
+  --gold3:rgba(201,148,42,0.12);
+  --gold4:rgba(201,148,42,0.06);
+  --teal:#2dd4bf;
+  --teal2:rgba(45,212,191,0.15);
+  --white:#1a1208;
   --mid:#6b5b3e;
   --muted:#9e8e72;
-  --border:rgba(201,148,42,0.2);
-  --border2:rgba(201,148,42,0.08);
-  --red:#c0392b;
-  --teal:#1a7a6e;
+  --border:rgba(201,148,42,0.22);
+  --border2:rgba(201,148,42,0.1);
+  --glow:rgba(201,148,42,0.2);
 }
 html{scroll-behavior:smooth;scrollbar-width:thin;scrollbar-color:var(--gold) var(--bg2)}
 ::-webkit-scrollbar{width:5px}
 ::-webkit-scrollbar-track{background:var(--bg2)}
 ::-webkit-scrollbar-thumb{background:var(--gold);border-radius:3px}
-body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--dark);overflow-x:hidden;cursor:none;min-height:100vh}
-body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(circle at 20% 20%, rgba(201,148,42,0.04) 0%, transparent 60%),radial-gradient(circle at 80% 80%, rgba(201,148,42,0.03) 0%, transparent 60%);pointer-events:none;z-index:0}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--white);overflow-x:hidden;cursor:none;min-height:100vh}
+body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(ellipse at 10% 10%,rgba(201,148,42,0.06) 0%,transparent 55%),radial-gradient(ellipse at 90% 90%,rgba(201,148,42,0.04) 0%,transparent 55%);pointer-events:none;z-index:0}
 
-/* CURSOR */
-#cursor-dot{position:fixed;width:7px;height:7px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:100000;transform:translate(-50%,-50%)}
-#cursor-ring{position:fixed;width:30px;height:30px;border:1.5px solid var(--gold);border-radius:50%;pointer-events:none;z-index:100000;transform:translate(-50%,-50%);transition:left 0.12s ease,top 0.12s ease}
+/* ── CURSOR ── */
+#cursor-dot{position:fixed;width:7px;height:7px;background:var(--gold2);border-radius:50%;pointer-events:none;z-index:100000;transform:translate(-50%,-50%);box-shadow:0 0 10px var(--gold)}
+#cursor-ring{position:fixed;width:32px;height:32px;border:1.5px solid var(--gold);border-radius:50%;pointer-events:none;z-index:100000;transform:translate(-50%,-50%);transition:left .12s ease,top .12s ease,transform .2s,border-color .3s}
 
-/* LOADER */
-#loader{position:fixed;inset:0;background:var(--dark);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:99999;transition:opacity 0.9s,visibility 0.9s}
+/* ── LOADER ── */
+#loader{position:fixed;inset:0;background:#1a1208;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:99999;transition:opacity .9s,visibility .9s}
 #loader.hide{opacity:0;visibility:hidden;pointer-events:none}
-.loader-init{font-family:'Fraunces',serif;font-size:clamp(4rem,12vw,9rem);font-weight:300;color:var(--gold2);letter-spacing:8px;font-style:italic;animation:fadeInScale 0.8s ease forwards}
-@keyframes fadeInScale{from{opacity:0;transform:scale(0.9)}to{opacity:1;transform:scale(1)}}
-.loader-bar-wrap{margin-top:2rem;width:180px;height:1px;background:rgba(255,255,255,0.1)}
+.loader-init{font-family:'Fraunces',serif;font-size:clamp(4rem,12vw,9rem);font-weight:300;color:var(--gold2);letter-spacing:8px;font-style:italic;animation:fadeInScale .8s ease forwards}
+@keyframes fadeInScale{from{opacity:0;transform:scale(.9)}to{opacity:1;transform:scale(1)}}
+.loader-bar-wrap{margin-top:2rem;width:180px;height:1px;background:rgba(201,148,42,0.3)}
 .loader-bar{height:100%;width:0%;background:var(--gold2);animation:loadBar 2s ease forwards}
 @keyframes loadBar{0%{width:0%}100%{width:100%}}
-.loader-text{margin-top:1.2rem;font-size:.72rem;color:rgba(255,255,255,0.3);letter-spacing:.3em;text-transform:uppercase}
+.loader-text{margin-top:1.2rem;font-size:.7rem;color:rgba(255,255,255,0.4);letter-spacing:.3em;text-transform:uppercase}
 
-/* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:0 3rem;display:flex;align-items:center;justify-content:space-between;height:70px;background:rgba(250,248,243,0.88);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);transform:translateY(-100%);animation:slideDown 0.6s ease 2.3s forwards}
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:0 3rem;display:flex;align-items:center;justify-content:space-between;height:68px;background:rgba(250,248,243,0.9);backdrop-filter:blur(24px);border-bottom:1px solid var(--border2);transform:translateY(-100%);animation:slideDown .6s ease 2.3s forwards}
 @keyframes slideDown{to{transform:translateY(0)}}
-.nav-logo{font-family:'Fraunces',serif;font-size:1.15rem;font-weight:400;color:var(--dark);font-style:italic;letter-spacing:.05em}
+.nav-logo{font-family:'Fraunces',serif;font-size:1.1rem;font-weight:400;color:#1a1208;font-style:italic;letter-spacing:.05em}
 .nav-logo span{color:var(--gold)}
 .nav-links{display:flex;gap:2.5rem;list-style:none}
-.nav-links a{color:var(--muted);font-size:.82rem;text-decoration:none;letter-spacing:.08em;text-transform:uppercase;transition:color 0.3s;position:relative;padding-bottom:3px}
-.nav-links a::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform 0.3s}
-.nav-links a:hover{color:var(--dark)}.nav-links a:hover::after{transform:scaleX(1)}
+.nav-links a{color:var(--muted);font-size:.78rem;text-decoration:none;letter-spacing:.1em;text-transform:uppercase;transition:color .3s;position:relative;padding-bottom:3px}
+.nav-links a::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.nav-links a:hover{color:#1a1208}.nav-links a:hover::after{transform:scaleX(1)}
 .nav-mobile-toggle{display:none;flex-direction:column;gap:5px;cursor:pointer}
-.nav-mobile-toggle span{display:block;width:22px;height:1px;background:var(--dark)}
+.nav-mobile-toggle span{display:block;width:22px;height:1px;background:#1a1208}
 
-/* HERO */
+/* ── PAGES ── */
+#main-page{display:block}
+#project-detail-page{display:none;position:fixed;inset:0;background:var(--bg);z-index:5000;overflow-y:auto;padding-top:80px}
+#project-detail-page.active{display:block}
+
+/* ── HERO ── */
 #hero{min-height:100vh;display:flex;align-items:center;padding:100px 3rem 60px;position:relative;z-index:1}
-.hero-inner{max-width:1200px;margin:0 auto;width:100%;display:grid;grid-template-columns:1fr 380px;gap:6rem;align-items:center}
-.hero-eyebrow{font-size:.72rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem;display:flex;align-items:center;gap:.8rem}
+.hero-inner{max-width:1200px;margin:0 auto;width:100%;display:grid;grid-template-columns:1fr 360px;gap:5rem;align-items:center}
+.hero-eyebrow{font-size:.7rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem;display:flex;align-items:center;gap:.8rem}
 .hero-eyebrow::before{content:'';width:30px;height:1px;background:var(--gold)}
-.hero-avail{display:inline-flex;align-items:center;gap:.6rem;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);padding:.35rem 1rem;border:1px solid rgba(26,122,110,0.25);border-radius:2px;background:rgba(26,122,110,0.05);margin-bottom:1.5rem}
+.hero-avail{display:inline-flex;align-items:center;gap:.6rem;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);padding:.35rem 1rem;border:1px solid rgba(45,212,191,0.25);border-radius:2px;background:rgba(45,212,191,0.05);margin-bottom:1.5rem}
 .avail-dot{width:6px;height:6px;background:var(--teal);border-radius:50%;animation:pulse 2s ease infinite}
-@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.3;transform:scale(1.5)}}
-.hero-name{font-family:'Syne',sans-serif;font-size:clamp(3rem,7vw,5.5rem);font-weight:800;line-height:.95;color:var(--dark);margin-bottom:.5rem;letter-spacing:-2px}
-.hero-name .italic{font-family:'Fraunces',serif;font-weight:300;font-style:italic;color:var(--gold);letter-spacing:0}
-.hero-subtitle{font-family:'Fraunces',serif;font-size:1.1rem;color:var(--mid);font-style:italic;margin-bottom:1.5rem;font-weight:300}
-.hero-desc{font-size:.9rem;color:var(--mid);line-height:1.8;max-width:480px;margin-bottom:2.5rem}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.3;transform:scale(1.6)}}
+.hero-name{font-family:'Syne',sans-serif;font-size:clamp(3rem,7vw,5.5rem);font-weight:800;line-height:.95;color:#1a1208;margin-bottom:.5rem;letter-spacing:-2px}
+.hero-name .italic{font-family:'Fraunces',serif;font-weight:300;font-style:italic;color:var(--gold2);letter-spacing:0}
+.hero-subtitle{font-family:'Fraunces',serif;font-size:1.05rem;color:var(--mid);font-style:italic;margin-bottom:1.5rem;font-weight:300}
+.hero-desc{font-size:.88rem;color:var(--mid);line-height:1.85;max-width:460px;margin-bottom:2.5rem}
 .hero-btns{display:flex;gap:1rem;flex-wrap:wrap}
-.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.8rem 2rem;font-family:'DM Sans',sans-serif;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;cursor:pointer;border:none;transition:all 0.3s}
-.btn-primary{background:var(--dark);color:#fff;border:1px solid var(--dark)}
-.btn-primary:hover{background:var(--gold);border-color:var(--gold);transform:translateY(-2px)}
-.btn-outline{background:transparent;color:var(--dark);border:1px solid rgba(26,18,8,0.3)}
-.btn-outline:hover{background:var(--dark);color:#fff;transform:translateY(-2px)}
+.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.8rem 2rem;font-family:'DM Sans',sans-serif;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;cursor:pointer;border:none;transition:all .3s}
+.btn-primary{background:var(--gold);color:var(--bg);font-weight:600;border:1px solid var(--gold)}
+.btn-primary:hover{background:var(--gold2);border-color:var(--gold2);transform:translateY(-2px);box-shadow:0 8px 25px var(--glow)}
+.btn-outline{background:transparent;color:var(--white);border:1px solid var(--border)}
+.btn-outline:hover{background:var(--gold3);border-color:var(--gold);color:var(--gold2);transform:translateY(-2px)}
 
-/* Card */
+/* Hero floating card */
 .hero-card-wrap{perspective:1000px}
-.hero-card{background:var(--panel);border:1px solid var(--border);padding:2.5rem 2rem;position:relative;animation:float3d 7s ease-in-out infinite;box-shadow:0 20px 60px rgba(201,148,42,0.08),0 2px 8px rgba(0,0,0,0.06)}
+.hero-card{background:var(--panel);border:1px solid var(--border);padding:2.5rem 2rem;position:relative;animation:float3d 7s ease-in-out infinite;box-shadow:0 20px 60px rgba(0,0,0,0.5),0 0 0 1px rgba(201,148,42,0.06)}
 .hero-card::before{content:'';position:absolute;top:10px;left:10px;right:-10px;bottom:-10px;border:1px solid var(--border2);z-index:-1}
-@keyframes float3d{0%,100%{transform:translateY(0) rotate(.5deg)}50%{transform:translateY(-12px) rotate(-.5deg)}}
-.card-label{font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem;display:flex;align-items:center;gap:.5rem}
+@keyframes float3d{0%,100%{transform:translateY(0) rotate(.4deg)}50%{transform:translateY(-12px) rotate(-.4deg)}}
+.card-label{font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem;display:flex;align-items:center;gap:.5rem}
 .card-label::after{content:'';flex:1;height:1px;background:var(--border)}
-.card-avatar{width:70px;height:70px;background:var(--dark);display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-size:1.6rem;color:var(--gold2);font-style:italic;margin:0 auto 1.2rem}
-.card-name{font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:700;text-align:center;color:var(--dark);margin-bottom:.3rem}
-.card-role{text-align:center;font-size:.75rem;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;margin-bottom:1.5rem}
+.card-avatar{width:66px;height:66px;background:linear-gradient(135deg,var(--gold),var(--gold2));display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-size:1.5rem;color:var(--bg);font-style:italic;margin:0 auto 1.2rem}
+.card-name{font-family:'Syne',sans-serif;font-size:1.05rem;font-weight:700;text-align:center;color:#1a1208;margin-bottom:.3rem}
+.card-role{text-align:center;font-size:.72rem;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;margin-bottom:1.5rem}
 .card-divider{border:none;border-top:1px solid var(--border2);margin:.8rem 0}
 .card-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem}
 .card-stat{text-align:center;padding:.7rem .3rem}
-.stat-val{font-family:'Fraunces',serif;font-size:1.4rem;font-style:italic;color:var(--gold);display:block}
-.stat-lbl{font-size:.65rem;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-top:2px}
+.stat-val{font-family:'Fraunces',serif;font-size:1.4rem;font-style:italic;color:var(--gold2);display:block}
+.stat-lbl{font-size:.62rem;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-top:2px}
 
-/* MARQUEE */
-.marquee-section{padding:1.8rem 0;overflow:hidden;border-top:1px solid var(--border2);border-bottom:1px solid var(--border2);background:var(--bg2);position:relative;z-index:1}
+/* ── MARQUEE ── */
+.marquee-section{padding:1.8rem 0;overflow:hidden;border-top:1px solid var(--border2);border-bottom:1px solid var(--border2);position:relative;z-index:1}
 .marquee-wrap{display:flex;gap:3rem;animation:marquee 30s linear infinite;width:max-content}
-.marquee-item{display:flex;align-items:center;gap:.6rem;font-size:.78rem;color:var(--muted);white-space:nowrap;letter-spacing:.05em}
+.marquee-item{display:flex;align-items:center;gap:.6rem;font-size:.75rem;color:var(--muted);white-space:nowrap;letter-spacing:.04em}
 .marquee-item .sep{color:var(--gold);font-size:1rem}
 @keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
-/* SECTIONS */
+/* ── SHARED SECTIONS ── */
 section{position:relative;z-index:1}
 .section-inner{max-width:1200px;margin:0 auto;padding:0 3rem}
-.section-tag{font-size:.68rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:.8rem;display:flex;align-items:center;gap:.7rem}
+.section-tag{font-size:.65rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:.8rem;display:flex;align-items:center;gap:.7rem}
 .section-tag::before{content:'';width:20px;height:1px;background:var(--gold)}
-.section-title{font-family:'Syne',sans-serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:800;line-height:1.1;color:var(--dark);margin-bottom:.5rem;letter-spacing:-1px}
-.gold-text{color:var(--gold)}
-
-/* SKILLS */
-#skills{padding:6rem 0}
-.skills-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;margin-top:3rem}
-.skills-bars-col h3,.chips-col h3{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:1.8rem;display:flex;align-items:center;gap:.7rem}
-.skills-bars-col h3::after,.chips-col h3::after{content:'';flex:1;height:1px;background:var(--border2)}
-.skill-bar-item{margin-bottom:1.3rem}
-.skill-bar-header{display:flex;justify-content:space-between;margin-bottom:.4rem}
-.skill-bar-name{font-size:.875rem;color:var(--dark2)}
-.skill-bar-pct{font-size:.78rem;color:var(--gold)}
-.skill-bar-track{height:3px;background:var(--border2);border-radius:2px;overflow:hidden}
-.skill-bar-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--gold),var(--gold2));border-radius:2px;transition:width 1.3s cubic-bezier(.22,1,.36,1)}
-.chips-wrap{display:flex;flex-wrap:wrap;gap:.5rem}
-.chip{padding:.32rem .8rem;border-radius:2px;font-size:.76rem;border:1px solid var(--border);color:var(--mid);background:transparent;cursor:default;transition:all 0.3s;letter-spacing:.02em}
-.chip:hover{background:var(--gold3);border-color:var(--gold);color:var(--dark);transform:translateY(-2px)}
-.chip.ai:hover{color:var(--teal);border-color:rgba(26,122,110,0.4);background:rgba(26,122,110,0.05)}
-
-/* EXPERIENCE */
-#experience{padding:6rem 0;background:var(--panel2)}
-.timeline{position:relative;margin-top:3rem;padding-left:2rem}
-.timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:1px;background:var(--border)}
-.timeline-item{position:relative;margin-bottom:2.5rem;padding:2rem;background:var(--panel);border:1px solid var(--border2);transition:all 0.3s;box-shadow:0 2px 12px rgba(0,0,0,0.03)}
-.timeline-item:hover{border-color:var(--border);box-shadow:0 8px 30px rgba(201,148,42,0.08);transform:translateX(5px)}
-.timeline-dot{position:absolute;left:-2.55rem;top:2rem;width:11px;height:11px;background:var(--gold);border:2px solid var(--bg)}
-.timeline-header{display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:space-between;gap:.8rem;margin-bottom:.8rem}
-.timeline-title{font-family:'Syne',sans-serif;font-size:1.05rem;font-weight:700;color:var(--dark)}
-.timeline-company{font-size:.85rem;color:var(--gold);font-weight:500}
-.timeline-date{font-size:.78rem;color:var(--muted);letter-spacing:.03em}
-.timeline-badge{padding:.2rem .7rem;font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;background:var(--gold3);color:var(--gold);border:1px solid var(--border)}
-.timeline-desc{list-style:none;padding:0;display:flex;flex-direction:column;gap:.5rem;margin-top:.8rem}
-.timeline-desc li{font-size:.875rem;color:var(--mid);line-height:1.65;padding-left:1.1rem;position:relative}
-.timeline-desc li::before{content:'—';position:absolute;left:0;color:var(--gold);font-size:.8rem}
-.timeline-chips{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1rem}
-.t-chip{padding:.2rem .65rem;font-size:.72rem;background:var(--bg2);color:var(--mid);border:1px solid var(--border2);letter-spacing:.03em}
-
-/* PROJECTS */
-#projects{padding:6rem 0}
-.projects-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem}
-.proj-card{background:var(--panel);border:1px solid var(--border2);padding:1.8rem;position:relative;overflow:hidden;transition:all 0.3s;cursor:default}
-.proj-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),var(--gold2));transform:scaleX(0);transform-origin:left;transition:transform 0.4s cubic-bezier(.22,1,.36,1)}
-.proj-card:hover{transform:translateY(-5px);box-shadow:0 15px 40px rgba(201,148,42,0.08);border-color:var(--border)}
-.proj-card:hover::before{transform:scaleX(1)}
-.proj-emoji{font-size:1.8rem;margin-bottom:.8rem;display:block}
-.proj-name{font-family:'Syne',sans-serif;font-size:.98rem;font-weight:700;margin-bottom:.5rem;color:var(--dark)}
-.proj-desc{font-size:.83rem;color:var(--mid);line-height:1.65;margin-bottom:.9rem}
-.proj-tags{display:flex;flex-wrap:wrap;gap:.35rem}
-.proj-tag{padding:.18rem .6rem;font-size:.7rem;background:var(--bg2);color:var(--muted);border:1px solid var(--border2)}
-
-/* EDUCATION */
-#education{padding:6rem 0;background:var(--panel2)}
-.edu-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:2rem}
-.edu-card{background:var(--panel);border:1px solid var(--border2);padding:1.8rem;transition:all 0.3s}
-.edu-card:hover{border-color:var(--border);transform:translateY(-3px);box-shadow:0 8px 25px rgba(201,148,42,0.07)}
-.edu-badge{font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;padding:.25rem .7rem;display:inline-block;margin-bottom:.9rem}
-.edu-badge.ms{background:var(--gold3);color:var(--gold);border:1px solid var(--border)}
-.edu-badge.bt{background:rgba(26,122,110,0.08);color:var(--teal);border:1px solid rgba(26,122,110,0.2)}
-.edu-univ{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;color:var(--dark);margin-bottom:.3rem}
-.edu-degree{font-family:'Fraunces',serif;font-size:.9rem;color:var(--gold);font-style:italic;margin-bottom:.3rem}
-.edu-dates{font-size:.8rem;color:var(--muted);letter-spacing:.02em}
-.cert-card{margin-top:1.5rem;background:var(--panel);border:1px solid var(--border2);padding:1.3rem 1.6rem;display:flex;align-items:center;gap:1rem}
-.cert-icon{width:44px;height:44px;background:var(--gold3);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0}
-.cert-name{font-weight:600;font-size:.9rem;color:var(--dark);margin-bottom:.2rem}
-.cert-issuer{font-size:.78rem;color:var(--muted)}
-.langs-wrap{margin-top:2rem}
-.langs-title{font-family:'Syne',sans-serif;font-weight:700;font-size:1rem;color:var(--dark);margin-bottom:.9rem}
-.lang-badges{display:flex;gap:.8rem;flex-wrap:wrap}
-.lang-badge{padding:.4rem 1.1rem;border:1px solid var(--border);font-size:.78rem;color:var(--mid);background:var(--panel)}
-
-/* CONTACT */
-#contact{padding:6rem 0}
-.contact-grid{display:grid;grid-template-columns:1fr auto;gap:5rem;align-items:center;margin-top:3rem}
-.contact-cards{display:flex;flex-direction:column;gap:1rem}
-.contact-card{display:flex;align-items:center;gap:1.2rem;background:var(--panel);border:1px solid var(--border2);padding:1.1rem 1.4rem;transition:all 0.3s}
-.contact-card:hover{border-color:var(--border);transform:translateX(5px);box-shadow:0 4px 20px rgba(201,148,42,0.06)}
-.contact-icon{width:42px;height:42px;background:var(--gold3);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
-.contact-label{font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:.1rem}
-.contact-val{font-size:.9rem;color:var(--dark)}
-.contact-val a{color:var(--dark);text-decoration:none;transition:color 0.3s}
-.contact-val a:hover{color:var(--gold)}
-.contact-avatar-wrap{position:relative;display:flex;align-items:center;justify-content:center;width:180px;height:180px}
-.ripple{position:absolute;border-radius:50%;border:1px solid var(--border);animation:rippleOut 3s ease infinite}
-.ripple:nth-child(1){width:100%;height:100%}.ripple:nth-child(2){width:135%;height:135%;animation-delay:1s}.ripple:nth-child(3){width:170%;height:170%;animation-delay:2s}
-@keyframes rippleOut{0%{transform:scale(0.5);opacity:0.8}100%{transform:scale(1.3);opacity:0}}
-.contact-avatar{width:90px;height:90px;background:var(--dark);display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-size:2rem;color:var(--gold2);font-style:italic;position:relative;z-index:2;box-shadow:0 8px 30px rgba(0,0,0,0.15)}
-
-footer{text-align:center;padding:3rem 2rem;border-top:1px solid var(--border2);font-size:.8rem;color:var(--muted);letter-spacing:.05em;position:relative;z-index:1}
-footer span{color:var(--gold)}
-
-/* REVEAL */
-.reveal{opacity:0;transition:opacity 0.7s ease,transform 0.7s cubic-bezier(.22,1,.36,1)}
+.section-num{color:var(--muted);margin-right:.3rem}
+.section-title{font-family:'Syne',sans-serif;font-size:clamp(2rem,5vw,3.5rem);font-weight:800;line-height:1.05;color:#1a1208;margin-bottom:.5rem;letter-spacing:-1px}
+.gold-text{color:var(--gold2)}
+.reveal{opacity:0;transition:opacity .7s ease,transform .7s cubic-bezier(.22,1,.36,1)}
 .reveal.fade-up{transform:translateY(30px)}.reveal.fade-left{transform:translateX(-30px)}.reveal.fade-right{transform:translateX(30px)}
 .reveal.visible{opacity:1;transform:none}
 
-@media(max-width:900px){.hero-inner,.skills-grid,.edu-grid,.contact-grid{grid-template-columns:1fr}.hero-card-wrap,.contact-avatar-wrap{display:none}.projects-grid{grid-template-columns:repeat(2,1fr)}.section-inner{padding:0 1.5rem}nav{padding:0 1.5rem}}
-@media(max-width:640px){.projects-grid{grid-template-columns:1fr}.nav-links{display:none}.nav-mobile-toggle{display:flex}}
-.nav-links.open{display:flex;flex-direction:column;position:fixed;top:70px;left:0;right:0;background:rgba(250,248,243,0.97);padding:1.5rem 2rem;gap:1.5rem;border-bottom:1px solid var(--border);z-index:999}
+/* ── SKILLS ── */
+#skills{padding:6rem 0}
+.skills-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;margin-top:3rem}
+.skills-bars-col h3,.chips-col h3{font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:1.8rem;display:flex;align-items:center;gap:.7rem}
+.skills-bars-col h3::after,.chips-col h3::after{content:'';flex:1;height:1px;background:var(--border2)}
+.skill-bar-item{margin-bottom:1.3rem}
+.skill-bar-header{display:flex;justify-content:space-between;margin-bottom:.4rem}
+.skill-bar-name{font-size:.875rem;color:#1a1208}
+.skill-bar-pct{font-size:.78rem;color:var(--gold)}
+.skill-bar-track{height:3px;background:rgba(201,148,42,0.1);border-radius:2px;overflow:hidden}
+.skill-bar-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--gold),var(--gold2));border-radius:2px;transition:width 1.3s cubic-bezier(.22,1,.36,1);box-shadow:0 0 6px var(--glow)}
+.chips-wrap{display:flex;flex-wrap:wrap;gap:.5rem}
+.chip{padding:.32rem .8rem;font-size:.75rem;border:1px solid var(--border);color:var(--mid);background:transparent;cursor:default;transition:all .3s;letter-spacing:.02em}
+.chip:hover{background:var(--gold3);border-color:var(--gold);color:var(--gold2);transform:translateY(-2px)}
+.chip.ai:hover{color:var(--teal);border-color:rgba(45,212,191,0.4);background:rgba(45,212,191,0.05)}
+
+/* ── EXPERIENCE ── */
+#experience{padding:6rem 0;background:var(--bg2)}
+.timeline{position:relative;margin-top:3rem;padding-left:2rem}
+.timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:1px;background:var(--border)}
+.timeline-item{position:relative;margin-bottom:2.5rem;padding:2rem;background:var(--panel);border:1px solid var(--border2);transition:all .3s}
+.timeline-item:hover{border-color:var(--border);box-shadow:0 8px 30px rgba(201,148,42,0.07);transform:translateX(5px)}
+.timeline-dot{position:absolute;left:-2.55rem;top:2rem;width:11px;height:11px;background:var(--gold);border:2px solid var(--bg2)}
+.timeline-header{display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:space-between;gap:.8rem;margin-bottom:.8rem}
+.timeline-title{font-family:'Syne',sans-serif;font-size:1.05rem;font-weight:700;color:#1a1208}
+.timeline-company{font-size:.85rem;color:var(--gold);font-weight:500}
+.timeline-date{font-size:.78rem;color:var(--muted)}
+.timeline-badge{padding:.2rem .7rem;font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;background:var(--gold3);color:var(--gold);border:1px solid var(--border)}
+.timeline-desc{list-style:none;display:flex;flex-direction:column;gap:.5rem;margin-top:.8rem}
+.timeline-desc li{font-size:.875rem;color:var(--mid);line-height:1.65;padding-left:1.1rem;position:relative}
+.timeline-desc li::before{content:'—';position:absolute;left:0;color:var(--gold)}
+.timeline-chips{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1rem}
+.t-chip{padding:.2rem .65rem;font-size:.72rem;background:var(--gold4);color:var(--gold);border:1px solid var(--border2)}
+
+/* ── PROJECTS ── */
+#projects{padding:6rem 0}
+.projects-list{display:flex;flex-direction:column;gap:1.2rem;margin-top:3rem}
+
+.proj-card{background:var(--panel);border:1px solid var(--border2);position:relative;overflow:hidden;transition:border-color .3s,box-shadow .3s}
+.proj-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),var(--gold2));transform:scaleX(0);transform-origin:left;transition:transform .5s cubic-bezier(.22,1,.36,1)}
+.proj-card:hover,.proj-card.open{border-color:var(--border)}
+.proj-card:hover::before,.proj-card.open::before{transform:scaleX(1)}
+
+/* card header row */
+.proj-header{padding:1.8rem 2rem;cursor:pointer;display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:start}
+.proj-header-left{display:flex;flex-direction:column;gap:1rem}
+.proj-meta-row{display:flex;align-items:center;gap:.8rem;flex-wrap:wrap}
+.proj-date{font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.proj-category{font-size:.65rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:.2rem .75rem;border:1px solid}
+.proj-category.prod{color:var(--teal);border-color:rgba(45,212,191,0.3);background:rgba(45,212,191,0.06)}
+.proj-category.research{color:var(--gold2);border-color:var(--border);background:var(--gold4)}
+.proj-category.academic{color:var(--mid);border-color:var(--border2);background:transparent}
+.proj-title-row{display:flex;align-items:flex-start;gap:1rem}
+.proj-emoji{font-size:1.7rem;flex-shrink:0;margin-top:.1rem}
+.proj-name{font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:800;line-height:1.2;color:#1a1208}
+.proj-subtitle{font-size:.85rem;color:var(--mid);line-height:1.65;margin-top:.35rem}
+.proj-metrics-row{display:flex;gap:1rem;flex-wrap:wrap}
+.proj-metric{text-align:center;padding:.65rem 1.1rem;background:var(--gold4);border:1px solid var(--border2);min-width:80px}
+.metric-val{font-family:'Syne',sans-serif;font-size:1.25rem;font-weight:800;color:var(--gold2);display:block;line-height:1.2}
+.metric-lbl{font-size:.6rem;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-top:3px}
+.proj-tags-row{display:flex;flex-wrap:wrap;gap:.4rem}
+.proj-tag{padding:.22rem .65rem;font-size:.7rem;border:1px solid var(--border2);color:var(--mid);background:transparent;transition:all .25s;cursor:default}
+.proj-tag:hover{border-color:var(--gold);color:var(--gold2);background:var(--gold4)}
+
+/* right side diagram */
+.proj-diagram{width:180px;flex-shrink:0;background:var(--bg2);border:1px solid var(--border2);padding:1rem;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.5rem;min-height:160px}
+.diag-nodes{display:flex;flex-wrap:wrap;justify-content:center;gap:.4rem;margin-bottom:.5rem}
+.diag-node{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.55rem;font-weight:700;letter-spacing:.04em;text-align:center;border:2px solid}
+.diag-node.n1{background:rgba(45,212,191,0.12);border-color:rgba(45,212,191,0.4);color:var(--teal)}
+.diag-node.n2{background:rgba(201,148,42,0.12);border-color:var(--border);color:var(--gold2)}
+.diag-node.n3{background:rgba(168,149,110,0.1);border-color:rgba(168,149,110,0.3);color:var(--mid)}
+.diag-connector{width:1px;height:20px;background:var(--border)}
+.diag-label{font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);text-align:center;line-height:1.4}
+.diag-spec{font-size:.58rem;color:var(--teal);letter-spacing:.06em;text-align:center}
+
+/* bottom action buttons */
+.proj-actions{display:flex;align-items:center;gap:.8rem;padding:.9rem 2rem;border-top:1px solid var(--border2);background:var(--bg2)}
+.proj-toggle-btn{display:flex;align-items:center;gap:.5rem;font-size:.75rem;color:var(--gold);background:var(--gold4);border:1px solid var(--border);padding:.4rem 1rem;cursor:pointer;transition:all .3s;letter-spacing:.06em;text-transform:uppercase}
+.proj-toggle-btn:hover{background:var(--gold3);border-color:var(--gold)}
+.proj-toggle-btn .arrow{transition:transform .35s cubic-bezier(.22,1,.36,1);display:inline-block}
+.proj-card.open .proj-toggle-btn .arrow{transform:rotate(180deg)}
+.proj-open-btn{display:flex;align-items:center;gap:.5rem;font-size:.75rem;color:#6b5b3e;background:transparent;border:1px solid var(--border);padding:.4rem 1rem;cursor:pointer;transition:all .3s;letter-spacing:.06em;text-transform:uppercase;text-decoration:none}
+.proj-open-btn:hover{border-color:var(--border);color:var(--white)}
+
+/* expand body */
+.proj-body{max-height:0;overflow:hidden;transition:max-height .5s cubic-bezier(.22,1,.36,1)}
+.proj-card.open .proj-body{max-height:800px}
+.proj-body-inner{padding:2rem;border-top:1px solid var(--border2)}
+.proj-section-header{font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:.8rem;display:flex;align-items:center;gap:.5rem}
+.proj-section-header::before{content:'—';color:var(--muted)}
+.proj-bullets{list-style:none;display:flex;flex-direction:column;gap:.6rem;margin-bottom:1.5rem}
+.proj-bullets li{font-size:.875rem;color:var(--mid);line-height:1.65;padding-left:1.1rem;position:relative}
+.proj-bullets li::before{content:'•';position:absolute;left:0;color:var(--gold)}
+
+/* ── PROJECT DETAIL PAGE ── */
+.detail-nav{position:fixed;top:0;left:0;right:0;z-index:5001;height:64px;background:rgba(250,248,243,0.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border2);display:flex;align-items:center;padding:0 3rem;gap:2rem}
+.detail-back{display:flex;align-items:center;gap:.5rem;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:#6b5b3e;cursor:pointer;border:1px solid var(--border);padding:.4rem 1rem;background:transparent;transition:all .3s}
+.detail-back:hover{color:var(--gold2);border-color:var(--gold)}
+.detail-breadcrumb{font-size:.72rem;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+.detail-breadcrumb span{color:var(--gold2)}
+.detail-inner{max-width:1100px;margin:0 auto;padding:3rem 3rem 6rem}
+.detail-meta-row{display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem;flex-wrap:wrap}
+.detail-date{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.detail-grid{display:grid;grid-template-columns:1fr 340px;gap:3rem;align-items:start;margin-bottom:2.5rem}
+.detail-title{font-family:'Syne',sans-serif;font-size:clamp(2rem,5vw,3.5rem);font-weight:800;line-height:1.05;color:#1a1208;margin-bottom:.5rem;letter-spacing:-1px}
+.detail-title .gold{color:var(--gold2)}
+.detail-metrics-row{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin:1.8rem 0}
+.detail-metric{padding:1.2rem;background:var(--panel);border:1px solid var(--border2);text-align:center}
+.detail-metric .dval{font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:800;color:var(--gold2);display:block;line-height:1}
+.detail-metric .dlbl{font-size:.65rem;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;margin-top:.4rem}
+.detail-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:2rem}
+.detail-tag{padding:.3rem .75rem;font-size:.72rem;border:1px solid var(--border);color:var(--mid);background:transparent}
+.detail-diagram-panel{background:var(--panel);border:1px solid var(--border2);padding:1.5rem;display:flex;flex-direction:column;align-items:center;gap:.8rem}
+.detail-diag-title{font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);align-self:flex-start;margin-bottom:.3rem}
+.detail-diag-nodes{display:flex;flex-wrap:wrap;justify-content:center;gap:.6rem}
+.detail-diag-node{width:58px;height:58px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.6rem;font-weight:700;letter-spacing:.04em;text-align:center;border:2px solid;line-height:1.2}
+.detail-diag-node.n1{background:rgba(45,212,191,0.12);border-color:rgba(45,212,191,0.4);color:var(--teal)}
+.detail-diag-node.n2{background:rgba(201,148,42,0.12);border-color:var(--border);color:var(--gold2)}
+.detail-diag-node.n3{background:rgba(168,149,110,0.1);border-color:rgba(168,149,110,0.3);color:var(--mid)}
+.detail-diag-connector{width:1px;height:24px;background:var(--border)}
+.detail-diag-spec{font-size:.65rem;color:var(--teal);letter-spacing:.06em;text-align:center;border-top:1px solid var(--border2);padding-top:.8rem;width:100%;line-height:1.6}
+.detail-section{margin-bottom:2rem}
+.detail-section-header{font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;display:flex;align-items:center;gap:.5rem}
+.detail-section-header::before{content:'—';color:var(--muted)}
+.detail-bullets{list-style:none;display:flex;flex-direction:column;gap:.7rem}
+.detail-bullets li{font-size:.9rem;color:var(--mid);line-height:1.7;padding-left:1.2rem;position:relative}
+.detail-bullets li::before{content:'•';position:absolute;left:0;color:var(--gold)}
+
+/* ── EDUCATION ── */
+#education{padding:6rem 0}
+.edu-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:2rem}
+.edu-card{background:var(--panel);border:1px solid var(--border2);padding:1.8rem;transition:all .3s}
+.edu-card:hover{border-color:var(--border);transform:translateY(-3px);box-shadow:0 8px 25px rgba(201,148,42,0.07)}
+.edu-badge{font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;padding:.25rem .7rem;display:inline-block;margin-bottom:.9rem}
+.edu-badge.ms{background:var(--gold3);color:var(--gold);border:1px solid var(--border)}
+.edu-badge.bt{background:rgba(45,212,191,0.08);color:var(--teal);border:1px solid rgba(45,212,191,0.2)}
+.edu-univ{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;color:#1a1208;margin-bottom:.3rem}
+.edu-degree{font-family:'Fraunces',serif;font-size:.9rem;color:var(--gold2);font-style:italic;margin-bottom:.3rem}
+.edu-dates{font-size:.78rem;color:var(--muted)}
+.cert-card{margin-top:1.5rem;background:var(--panel);border:1px solid var(--border2);padding:1.3rem 1.6rem;display:flex;align-items:center;gap:1rem}
+.cert-icon{width:44px;height:44px;background:var(--gold3);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0}
+.cert-name{font-weight:600;font-size:.9rem;color:#1a1208;margin-bottom:.2rem}
+.cert-issuer{font-size:.78rem;color:var(--muted)}
+.langs-wrap{margin-top:2rem}
+.langs-title{font-family:'Syne',sans-serif;font-weight:700;font-size:1rem;color:#1a1208;margin-bottom:.9rem}
+.lang-badges{display:flex;gap:.8rem;flex-wrap:wrap}
+.lang-badge{padding:.4rem 1.1rem;border:1px solid var(--border2);font-size:.78rem;color:var(--mid);background:var(--panel)}
+
+/* ── CONTACT ── */
+#contact{padding:6rem 0}
+.contact-grid{display:grid;grid-template-columns:1fr 400px;gap:2.5rem;margin-top:3rem;align-items:start}
+.contact-cards{display:flex;flex-direction:column;gap:.8rem}
+.contact-card{display:flex;align-items:center;justify-content:space-between;gap:1.2rem;background:var(--panel);border:1px solid var(--border2);padding:1.1rem 1.4rem;transition:all .3s;text-decoration:none;cursor:pointer}
+.contact-card:hover{border-color:var(--border);box-shadow:0 4px 20px rgba(201,148,42,0.08);transform:translateX(4px)}
+.contact-card-left{display:flex;align-items:center;gap:1rem}
+.contact-icon{width:40px;height:40px;background:var(--gold4);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
+.contact-label{font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:.15rem}
+.contact-val{font-size:.9rem;font-weight:500;color:#1a1208}
+.contact-arrow{font-size:.85rem;color:var(--gold);transition:color .3s,transform .3s}
+.contact-card:hover .contact-arrow{color:var(--gold2);transform:translateX(3px)}
+
+/* availability panel */
+.avail-panel{background:var(--panel);border:1px solid var(--border2);padding:2rem}
+.avail-panel-tag{font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:.7rem;display:flex;align-items:center;gap:.5rem}
+.avail-panel-tag::before{content:'//';color:var(--gold)}
+.avail-status{font-family:'Syne',sans-serif;font-size:1.4rem;font-weight:800;color:var(--teal);margin-bottom:.8rem;line-height:1.2}
+.avail-desc{font-size:.85rem;color:var(--mid);line-height:1.7;margin-bottom:1.2rem}
+.avail-roles{list-style:none;display:flex;flex-direction:column;gap:.4rem}
+.avail-roles li{font-size:.82rem;color:var(--mid);display:flex;align-items:center;gap:.6rem}
+.avail-roles li::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--gold);flex-shrink:0}
+
+footer{text-align:center;padding:3rem 2rem;border-top:1px solid var(--border2);font-size:.78rem;color:var(--muted);letter-spacing:.04em;position:relative;z-index:1}
+footer span{color:var(--gold2)}
+
+/* ── RESPONSIVE ── */
+@media(max-width:960px){
+  .hero-inner,.skills-grid,.contact-grid{grid-template-columns:1fr}
+  .hero-card-wrap{display:none}
+  .proj-header{grid-template-columns:1fr}
+  .proj-diagram{display:none}
+  .detail-grid{grid-template-columns:1fr}
+  .detail-diagram-panel{display:none}
+  .detail-metrics-row{grid-template-columns:1fr 1fr}
+  .edu-grid{grid-template-columns:1fr}
+  .section-inner{padding:0 1.5rem}
+  nav,.detail-nav{padding:0 1.5rem}
+  #hero{padding:90px 1.5rem 50px}
+}
+@media(max-width:640px){
+  .nav-links{display:none}.nav-mobile-toggle{display:flex}
+  .detail-metrics-row{grid-template-columns:1fr}
+}
+.nav-links.open{display:flex;flex-direction:column;position:fixed;top:68px;left:0;right:0;background:rgba(250,248,243,.97);padding:1.5rem 2rem;gap:1.5rem;border-bottom:1px solid var(--border2);z-index:999}
 </style>
 </head>
 <body>
+
 <div id="cursor-dot"></div>
 <div id="cursor-ring"></div>
 
+<!-- LOADER -->
 <div id="loader">
   <div class="loader-init">LT</div>
   <div class="loader-bar-wrap"><div class="loader-bar"></div></div>
   <div class="loader-text">Portfolio</div>
 </div>
 
+<!-- NAV -->
 <nav>
-  <div class="nav-logo"><span>V</span>enkata <span>L</span>akshmi <span>B</span>havani <span>L</span>alith <span>T</span>alluri</div>
+  <div class="nav-logo"><span>L</span>alith Talluri</div>
   <ul class="nav-links" id="navLinks">
     <li><a onclick="navScrollTo('hero')" href="javascript:void(0)">Home</a></li>
     <li><a onclick="navScrollTo('skills')" href="javascript:void(0)">Skills</a></li>
@@ -228,6 +339,10 @@ footer span{color:var(--gold)}
   <div class="nav-mobile-toggle" onclick="document.getElementById('navLinks').classList.toggle('open')"><span></span><span></span><span></span></div>
 </nav>
 
+<!-- ═══════════ MAIN PAGE ═══════════ -->
+<div id="main-page">
+
+<!-- HERO -->
 <section id="hero">
   <div class="hero-inner">
     <div>
@@ -250,7 +365,7 @@ footer span{color:var(--gold)}
         <div class="card-divider"></div>
         <div class="card-stats">
           <div class="card-stat"><span class="stat-val">2+</span><span class="stat-lbl">Yrs Exp</span></div>
-          <div class="card-stat"><span class="stat-val">10+</span><span class="stat-lbl">Projects</span></div>
+          <div class="card-stat"><span class="stat-val">9+</span><span class="stat-lbl">Projects</span></div>
           <div class="card-stat"><span class="stat-val">Azure</span><span class="stat-lbl">Cloud</span></div>
         </div>
       </div>
@@ -258,6 +373,7 @@ footer span{color:var(--gold)}
   </div>
 </section>
 
+<!-- MARQUEE -->
 <div class="marquee-section">
   <div class="marquee-wrap">
     <div class="marquee-item">Indeed Filer <span class="sep">·</span></div>
@@ -283,10 +399,11 @@ footer span{color:var(--gold)}
   </div>
 </div>
 
+<!-- SKILLS -->
 <section id="skills">
   <div class="section-inner">
     <div class="reveal fade-up">
-      <div class="section-tag">Technical Arsenal</div>
+      <div class="section-tag"><span class="section-num">01 /</span> Technical Arsenal</div>
       <h2 class="section-title">Skills &amp; <span class="gold-text">Technologies</span></h2>
     </div>
     <div class="skills-grid">
@@ -296,7 +413,7 @@ footer span{color:var(--gold)}
         <div class="skill-bar-item"><div class="skill-bar-header"><span class="skill-bar-name">AI / LLM Engineering (RAG, LangChain)</span><span class="skill-bar-pct">88%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-pct="88"></div></div></div>
         <div class="skill-bar-item"><div class="skill-bar-header"><span class="skill-bar-name">Azure Cloud &amp; DevOps</span><span class="skill-bar-pct">87%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-pct="87"></div></div></div>
         <div class="skill-bar-item"><div class="skill-bar-header"><span class="skill-bar-name">Full-Stack (React, JS, REST APIs)</span><span class="skill-bar-pct">85%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-pct="85"></div></div></div>
-        <div class="skill-bar-item"><div class="skill-bar-header"><span class="skill-bar-name">Machine Learning &amp; Deep Learning</span><span class="skill-bar-pct">83%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-pct="83"></div></div></div>
+        <div class="skill-bar-item"><div class="skill-bar-header"><span class="skill-bar-name">Machine &amp; Deep Learning</span><span class="skill-bar-pct">83%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-pct="83"></div></div></div>
         <div class="skill-bar-item"><div class="skill-bar-header"><span class="skill-bar-name">Data Analysis &amp; BI (Power BI, Tableau)</span><span class="skill-bar-pct">80%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-pct="80"></div></div></div>
         <div class="skill-bar-item"><div class="skill-bar-header"><span class="skill-bar-name">Databases (CosmosDB, SQL, MongoDB)</span><span class="skill-bar-pct">82%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-pct="82"></div></div></div>
         <div class="skill-bar-item"><div class="skill-bar-header"><span class="skill-bar-name">Agentic AI / Multi-Agent Systems</span><span class="skill-bar-pct">78%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-pct="78"></div></div></div>
@@ -314,10 +431,11 @@ footer span{color:var(--gold)}
   </div>
 </section>
 
+<!-- EXPERIENCE -->
 <section id="experience">
   <div class="section-inner">
     <div class="reveal fade-up">
-      <div class="section-tag">Career</div>
+      <div class="section-tag"><span class="section-num">02 /</span> Career</div>
       <h2 class="section-title">Work <span class="gold-text">Experience</span></h2>
     </div>
     <div class="timeline">
@@ -328,11 +446,11 @@ footer span{color:var(--gold)}
           <div><div class="timeline-badge">Current Role</div><div class="timeline-date">Feb 2026 – Present · Lewisville, TX</div></div>
         </div>
         <ul class="timeline-desc">
-          <li>Leading final deployment phase — system stabilization, end-to-end testing, and client handover of a live tax document management portal on Azure Web Apps.</li>
-          <li>Built full frontend with Vanilla JS, HTML, Tailwind CSS with Google OAuth + JWT-based session authentication and real-time document tracking.</li>
-          <li>Engineered Python backend on Azure Functions with Cosmos DB and Azure Blob Storage, exposing REST APIs for document management and two-stage review workflow.</li>
-          <li>Implemented live admin feed auto-refreshing every 5 seconds with searchable, timestamped activity logs.</li>
-          <li>Built automated RAG pipeline powered by Claude AI, LangChain, and Hugging Face Transformers.</li>
+          <li>Leading final deployment of a live tax document management portal on Azure Web Apps — system stabilization, end-to-end testing, and client handover.</li>
+          <li>Built full frontend with Vanilla JS + HTML + Tailwind CSS with Google OAuth + JWT auth; users upload/download tax documents and track filing status in real time.</li>
+          <li>Engineered Python backend on Azure Functions with Cosmos DB and Azure Blob Storage, exposing REST APIs for a two-stage Approve/Deny review workflow.</li>
+          <li>Implemented live admin feed auto-refreshing every 5 seconds with searchable, timestamped activity logs for full pipeline visibility.</li>
+          <li>Built automated RAG pipeline powered by Claude AI, LangChain, and Hugging Face Transformers for context-aware AI responses.</li>
         </ul>
         <div class="timeline-chips"><span class="t-chip">Azure Functions</span><span class="t-chip">Cosmos DB</span><span class="t-chip">Claude AI</span><span class="t-chip">LangChain</span><span class="t-chip">OAuth2/JWT</span><span class="t-chip">RAG</span></div>
       </div>
@@ -344,7 +462,7 @@ footer span{color:var(--gold)}
         </div>
         <ul class="timeline-desc">
           <li>Built LLM-powered document intelligence system using FAISS semantic search to summarize PDFs and answer natural-language questions.</li>
-          <li>Developed Power BI and Tableau dashboards with automated data refresh scheduling to visualize KPIs for stakeholders.</li>
+          <li>Developed Power BI and Tableau dashboards with automated data refresh to visualize KPIs and communicate insights to stakeholders.</li>
         </ul>
         <div class="timeline-chips"><span class="t-chip">LLMs</span><span class="t-chip">FAISS</span><span class="t-chip">Power BI</span><span class="t-chip">Tableau</span><span class="t-chip">Python</span></div>
       </div>
@@ -352,30 +470,414 @@ footer span{color:var(--gold)}
   </div>
 </section>
 
+<!-- PROJECTS -->
 <section id="projects">
   <div class="section-inner">
     <div class="reveal fade-up">
-      <div class="section-tag">Portfolio</div>
-      <h2 class="section-title">Featured <span class="gold-text">Projects</span></h2>
+      <div class="section-tag"><span class="section-num">03 /</span> Portfolio</div>
+      <h2 class="section-title">Systems <span class="gold-text">built, deployed,</span> monitored</h2>
     </div>
-    <div class="projects-grid">
-      <div class="proj-card reveal fade-up"><span class="proj-emoji">🏫</span><div class="proj-name">Smart Campus Resource Management</div><div class="proj-desc">Full-stack system with React frontend, Azure Static Web Apps, Python backend on Azure Functions and Cosmos DB. Claude AI-powered assistant for resource recommendations.</div><div class="proj-tags"><span class="proj-tag">React</span><span class="proj-tag">Azure Functions</span><span class="proj-tag">Cosmos DB</span><span class="proj-tag">Claude AI</span></div></div>
-      <div class="proj-card reveal fade-up"><span class="proj-emoji">📑</span><div class="proj-name">AI-Powered Tax Document Portal</div><div class="proj-desc">Production-grade tax portal on Azure with RAG pipeline, document management, two-stage review workflow, live admin feed, and Google OAuth + JWT auth.</div><div class="proj-tags"><span class="proj-tag">Azure</span><span class="proj-tag">LangChain</span><span class="proj-tag">RAG</span><span class="proj-tag">OAuth</span></div></div>
-      <div class="proj-card reveal fade-up"><span class="proj-emoji">🧠</span><div class="proj-name">LLM Document Intelligence</div><div class="proj-desc">Enterprise document Q&A using FAISS semantic search. Automated BI dashboards in Power BI & Tableau with KPI visualization.</div><div class="proj-tags"><span class="proj-tag">LLM</span><span class="proj-tag">FAISS</span><span class="proj-tag">Power BI</span><span class="proj-tag">NLP</span></div></div>
-      <div class="proj-card reveal fade-up"><span class="proj-emoji">🤖</span><div class="proj-name">Agentic AI Workflow Orchestrator</div><div class="proj-desc">Multi-agent LLM system using LangGraph and CrewAI for autonomous research, code generation, and validation pipelines deployed on Azure Functions.</div><div class="proj-tags"><span class="proj-tag">LangGraph</span><span class="proj-tag">CrewAI</span><span class="proj-tag">OpenAI</span><span class="proj-tag">Azure</span></div></div>
-      <div class="proj-card reveal fade-up"><span class="proj-emoji">📊</span><div class="proj-name">Real-Time Analytics Dashboard</div><div class="proj-desc">End-to-end data pipeline with Python ETL, Cosmos DB, and Power BI / Tableau dashboards. Live KPIs, anomaly detection, and interactive drill-down charts.</div><div class="proj-tags"><span class="proj-tag">Power BI</span><span class="proj-tag">Tableau</span><span class="proj-tag">ETL</span><span class="proj-tag">Cosmos DB</span></div></div>
-      <div class="proj-card reveal fade-up"><span class="proj-emoji">👁️</span><div class="proj-name">Gender ID with Face Mask Detection</div><div class="proj-desc">Real-time detection using MobileNet + OpenCV on Raspberry Pi for edge inference. Optimized inference pipeline for low-latency performance.</div><div class="proj-tags"><span class="proj-tag">MobileNet</span><span class="proj-tag">OpenCV</span><span class="proj-tag">Edge AI</span></div></div>
-      <div class="proj-card reveal fade-up"><span class="proj-emoji">🎙️</span><div class="proj-name">Emotion Recognition from Voice</div><div class="proj-desc">RNN/LSTM model classifying emotions from voice spectrograms with Flask API. MFCC feature extraction for classification across 7 emotion classes.</div><div class="proj-tags"><span class="proj-tag">RNN/LSTM</span><span class="proj-tag">Flask</span><span class="proj-tag">Deep Learning</span></div></div>
-      <div class="proj-card reveal fade-up"><span class="proj-emoji">🔬</span><div class="proj-name">Gastric Carcinoma Detection</div><div class="proj-desc">Hybrid transfer learning + CNN framework for medical image cancer detection. Custom classification heads for high diagnostic accuracy.</div><div class="proj-tags"><span class="proj-tag">Transfer Learning</span><span class="proj-tag">CNN</span><span class="proj-tag">Research</span></div></div>
-      <div class="proj-card reveal fade-up"><span class="proj-emoji">💬</span><div class="proj-name">Gen AI Contextual Chatbot</div><div class="proj-desc">Production RAG chatbot with persistent vector memory (FAISS/Chroma), Hugging Face embeddings and Claude/GPT backbone. Multi-turn conversations with context retention.</div><div class="proj-tags"><span class="proj-tag">RAG</span><span class="proj-tag">Claude AI</span><span class="proj-tag">LangChain</span></div></div>
+    <div class="projects-list" id="projectsList">
+
+      <!-- P1: Smart Campus -->
+      <div class="proj-card reveal fade-up" id="proj-0">
+        <div class="proj-header">
+          <div class="proj-header-left">
+            <div class="proj-meta-row">
+              <span class="proj-date">Aug 2024 — Present</span>
+              <span class="proj-category prod">Production</span>
+            </div>
+            <div class="proj-title-row">
+              <span class="proj-emoji">🏫</span>
+              <div>
+                <div class="proj-name">Smart Campus Resource Management System</div>
+                <div class="proj-subtitle">Full-stack Azure-native platform with Claude AI assistant for room booking, timer-triggered reminders, and real-time campus operations.</div>
+              </div>
+            </div>
+            <div class="proj-metrics-row">
+              <div class="proj-metric"><span class="metric-val" data-target="5" data-suffix="+">0</span><span class="metric-lbl">APIs Built</span></div>
+              <div class="proj-metric"><span class="metric-val" data-target="3" data-suffix=" Svcs">0</span><span class="metric-lbl">Azure Services</span></div>
+              <div class="proj-metric"><span class="metric-val" data-target="0" data-display="CI/CD">0</span><span class="metric-lbl">Deployment</span></div>
+            </div>
+            <div class="proj-tags-row"><span class="proj-tag">React</span><span class="proj-tag">Azure Functions</span><span class="proj-tag">Cosmos DB</span><span class="proj-tag">Claude AI</span><span class="proj-tag">JWT Auth</span><span class="proj-tag">CI/CD</span></div>
+          </div>
+          <div class="proj-diagram">
+            <div class="diag-nodes">
+              <div class="diag-node n1">React</div>
+              <div class="diag-node n2">APIs</div>
+              <div class="diag-node n3">AI</div>
+            </div>
+            <div class="diag-connector"></div>
+            <div class="diag-label">Azure Functions<br>+ Cosmos DB</div>
+            <div class="diag-spec">Claude AI · RAG</div>
+          </div>
+        </div>
+        <div class="proj-actions">
+          <button class="proj-toggle-btn" onclick="toggleProj(0)">View Details <span class="arrow">▼</span></button>
+          <a class="proj-open-btn" onclick="openDetail(0)" href="javascript:void(0)">Open Project →</a>
+        </div>
+        <div class="proj-body">
+          <div class="proj-body-inner">
+            <div class="proj-section-header">System Overview</div>
+            <ul class="proj-bullets">
+              <li>Built responsive React + Azure Static Web Apps frontend integrated with secure REST APIs (GET, POST, PATCH) and session-based authentication, delivering seamless room/resource booking workflows.</li>
+              <li>Developed Python backend on Azure Functions + Cosmos DB implementing booking status logic, timer-triggered reminders, and email notifications for real-time campus operations.</li>
+              <li>Built an AI-powered assistant using Claude AI for context-aware query handling and automated resource recommendations — reducing manual coordination overhead.</li>
+              <li>Integrated end-to-end automation with timezone-aware scheduling, auto-status transitions, and GitHub CI/CD for continuous delivery.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- P2: Tax Portal -->
+      <div class="proj-card reveal fade-up" id="proj-1">
+        <div class="proj-header">
+          <div class="proj-header-left">
+            <div class="proj-meta-row">
+              <span class="proj-date">Feb 2026 — Present</span>
+              <span class="proj-category prod">Production · Live</span>
+            </div>
+            <div class="proj-title-row">
+              <span class="proj-emoji">📑</span>
+              <div>
+                <div class="proj-name">AI-Powered Tax Document Management Portal</div>
+                <div class="proj-subtitle">Production Azure portal with RAG pipeline, two-stage review workflow, live 5s admin feed, and Google OAuth — serving real clients.</div>
+              </div>
+            </div>
+            <div class="proj-metrics-row">
+              <div class="proj-metric"><span class="metric-val" data-target="5" data-suffix="s">0</span><span class="metric-lbl">Admin Refresh</span></div>
+              <div class="proj-metric"><span class="metric-val" data-target="2" data-suffix="-Stage">0</span><span class="metric-lbl">Review Flow</span></div>
+              <div class="proj-metric"><span class="metric-val" data-target="10" data-suffix="+">0</span><span class="metric-lbl">API Endpoints</span></div>
+            </div>
+            <div class="proj-tags-row"><span class="proj-tag">Azure Web Apps</span><span class="proj-tag">LangChain</span><span class="proj-tag">RAG</span><span class="proj-tag">Claude AI</span><span class="proj-tag">Google OAuth</span><span class="proj-tag">Tailwind CSS</span></div>
+          </div>
+          <div class="proj-diagram">
+            <div class="diag-nodes">
+              <div class="diag-node n1">OAuth</div>
+              <div class="diag-node n2">RAG</div>
+              <div class="diag-node n3">Blob</div>
+            </div>
+            <div class="diag-connector"></div>
+            <div class="diag-label">Azure Functions<br>+ Cosmos DB</div>
+            <div class="diag-spec">Claude AI · HuggingFace</div>
+          </div>
+        </div>
+        <div class="proj-actions">
+          <button class="proj-toggle-btn" onclick="toggleProj(1)">View Details <span class="arrow">▼</span></button>
+          <a class="proj-open-btn" onclick="openDetail(1)" href="javascript:void(0)">Open Project →</a>
+        </div>
+        <div class="proj-body">
+          <div class="proj-body-inner">
+            <div class="proj-section-header">Portal Architecture</div>
+            <ul class="proj-bullets">
+              <li>Built full frontend in Vanilla JS + HTML + Tailwind CSS with Google OAuth + JWT session auth; document uploads/downloads by year and type with real-time filing status tracking.</li>
+              <li>Engineered Python backend on Azure Functions with Cosmos DB and Azure Blob Storage — REST APIs for document management and a two-stage Approve/Deny pricing workflow.</li>
+              <li>Implemented live admin feed auto-refreshing every 5 seconds with searchable, timestamped activity logs for complete pipeline visibility.</li>
+              <li>Built automated RAG pipeline (Claude AI + LangChain + HuggingFace) for context-aware document analysis and AI-generated responses.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- P3: Agentic AI -->
+      <div class="proj-card reveal fade-up" id="proj-2">
+        <div class="proj-header">
+          <div class="proj-header-left">
+            <div class="proj-meta-row">
+              <span class="proj-date">2025 — Present</span>
+              <span class="proj-category research">Agentic AI</span>
+            </div>
+            <div class="proj-title-row">
+              <span class="proj-emoji">🤖</span>
+              <div>
+                <div class="proj-name">Agentic AI Workflow Orchestrator</div>
+                <div class="proj-subtitle">Multi-agent LLM system — Planner, Researcher, Code Agent, Validator — coordinated via LangGraph with structured tool use and memory.</div>
+              </div>
+            </div>
+            <div class="proj-metrics-row">
+              <div class="proj-metric"><span class="metric-val" data-target="4" data-suffix=" Agents">0</span><span class="metric-lbl">Agent Types</span></div>
+              <div class="proj-metric"><span class="metric-val" data-target="0" data-display="Tool Use">0</span><span class="metric-lbl">Integration</span></div>
+              <div class="proj-metric"><span class="metric-val" data-target="0" data-display="Vector">0</span><span class="metric-lbl">Memory</span></div>
+            </div>
+            <div class="proj-tags-row"><span class="proj-tag">LangGraph</span><span class="proj-tag">CrewAI</span><span class="proj-tag">OpenAI</span><span class="proj-tag">Azure Functions</span><span class="proj-tag">FAISS</span><span class="proj-tag">Tool Use</span></div>
+          </div>
+          <div class="proj-diagram">
+            <div class="diag-nodes">
+              <div class="diag-node n1">Plan</div>
+              <div class="diag-node n2">Code</div>
+              <div class="diag-node n3">Valid</div>
+            </div>
+            <div class="diag-connector"></div>
+            <div class="diag-label">LangGraph<br>Supervisor Loop</div>
+            <div class="diag-spec">FAISS · Azure Deploy</div>
+          </div>
+        </div>
+        <div class="proj-actions">
+          <button class="proj-toggle-btn" onclick="toggleProj(2)">View Details <span class="arrow">▼</span></button>
+          <a class="proj-open-btn" onclick="openDetail(2)" href="javascript:void(0)">Open Project →</a>
+        </div>
+        <div class="proj-body">
+          <div class="proj-body-inner">
+            <div class="proj-section-header">Agent Architecture</div>
+            <ul class="proj-bullets">
+              <li>Architected multi-agent framework (Planner, Researcher, Code Agent, Validator) coordinated via LangGraph supervisor loop with full tool-use and function-calling integration.</li>
+              <li>Deployed as a REST API on Azure Functions — containerized with Docker, enabling auto-scaling and stateless execution for each agent invocation.</li>
+              <li>Integrated FAISS vector memory for cross-session context retention, reducing redundant retrieval and improving agent coherence across multi-turn tasks.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- P4: LLM Doc Intel -->
+      <div class="proj-card reveal fade-up" id="proj-3">
+        <div class="proj-header">
+          <div class="proj-header-left">
+            <div class="proj-meta-row">
+              <span class="proj-date">Feb 2023 — Jun 2023</span>
+              <span class="proj-category prod">Enterprise · The Hartford</span>
+            </div>
+            <div class="proj-title-row">
+              <span class="proj-emoji">🧠</span>
+              <div>
+                <div class="proj-name">LLM Document Intelligence System</div>
+                <div class="proj-subtitle">Enterprise PDF Q&amp;A using FAISS semantic search + automated Power BI &amp; Tableau dashboards for KPI visualization.</div>
+              </div>
+            </div>
+            <div class="proj-metrics-row">
+              <div class="proj-metric"><span class="metric-val" data-target="0" data-display="NL Q&A">0</span><span class="metric-lbl">Interface</span></div>
+              <div class="proj-metric"><span class="metric-val" data-target="2" data-suffix=" Tools">0</span><span class="metric-lbl">BI Platforms</span></div>
+              <div class="proj-metric"><span class="metric-val" data-target="0" data-display="Auto">0</span><span class="metric-lbl">Data Refresh</span></div>
+            </div>
+            <div class="proj-tags-row"><span class="proj-tag">LLM</span><span class="proj-tag">FAISS</span><span class="proj-tag">Semantic Search</span><span class="proj-tag">Power BI</span><span class="proj-tag">Tableau</span><span class="proj-tag">Python</span></div>
+          </div>
+          <div class="proj-diagram">
+            <div class="diag-nodes">
+              <div class="diag-node n1">PDF</div>
+              <div class="diag-node n2">FAISS</div>
+              <div class="diag-node n3">BI</div>
+            </div>
+            <div class="diag-connector"></div>
+            <div class="diag-label">LLM Inference<br>+ NL Answers</div>
+            <div class="diag-spec">Power BI · Tableau</div>
+          </div>
+        </div>
+        <div class="proj-actions">
+          <button class="proj-toggle-btn" onclick="toggleProj(3)">View Details <span class="arrow">▼</span></button>
+          <a class="proj-open-btn" onclick="openDetail(3)" href="javascript:void(0)">Open Project →</a>
+        </div>
+        <div class="proj-body">
+          <div class="proj-body-inner">
+            <div class="proj-section-header">Document Pipeline</div>
+            <ul class="proj-bullets">
+              <li>Built LLM-powered document intelligence using FAISS semantic search to summarize PDFs and answer natural-language questions; validated with Postman using API key auth.</li>
+              <li>Developed Power BI and Tableau dashboards with automated data refresh to surface KPIs and communicate AI-derived insights to business stakeholders.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- P5: Gen AI Chatbot -->
+      <div class="proj-card reveal fade-up" id="proj-4">
+        <div class="proj-header">
+          <div class="proj-header-left">
+            <div class="proj-meta-row">
+              <span class="proj-date">2024 — 2025</span>
+              <span class="proj-category research">Gen AI · RAG</span>
+            </div>
+            <div class="proj-title-row">
+              <span class="proj-emoji">💬</span>
+              <div>
+                <div class="proj-name">Gen AI Contextual Chatbot (RAG + Memory)</div>
+                <div class="proj-subtitle">Production RAG chatbot with persistent vector memory, Hugging Face embeddings, and Claude/GPT backbone for multi-turn conversations.</div>
+              </div>
+            </div>
+            <div class="proj-metrics-row">
+              <div class="proj-metric"><span class="metric-val" data-target="0" data-display="RAG">0</span><span class="metric-lbl">Architecture</span></div>
+              <div class="proj-metric"><span class="metric-val" data-target="0" data-display="Multi-Turn">0</span><span class="metric-lbl">Context</span></div>
+              <div class="proj-metric"><span class="metric-val" data-target="0" data-display="Vector">0</span><span class="metric-lbl">Memory</span></div>
+            </div>
+            <div class="proj-tags-row"><span class="proj-tag">RAG</span><span class="proj-tag">Claude AI</span><span class="proj-tag">Chroma DB</span><span class="proj-tag">LangChain</span><span class="proj-tag">HuggingFace</span><span class="proj-tag">Vector Search</span></div>
+          </div>
+          <div class="proj-diagram">
+            <div class="diag-nodes">
+              <div class="diag-node n1">Query</div>
+              <div class="diag-node n2">Embed</div>
+              <div class="diag-node n3">LLM</div>
+            </div>
+            <div class="diag-connector"></div>
+            <div class="diag-label">FAISS / Chroma<br>Vector Retrieval</div>
+            <div class="diag-spec">Claude AI · GPT</div>
+          </div>
+        </div>
+        <div class="proj-actions">
+          <button class="proj-toggle-btn" onclick="toggleProj(4)">View Details <span class="arrow">▼</span></button>
+          <a class="proj-open-btn" onclick="openDetail(4)" href="javascript:void(0)">Open Project →</a>
+        </div>
+        <div class="proj-body">
+          <div class="proj-body-inner">
+            <div class="proj-section-header">RAG Pipeline</div>
+            <ul class="proj-bullets">
+              <li>Production RAG chatbot with persistent FAISS/Chroma vector memory using Hugging Face embeddings and Claude/GPT backbone for high-quality grounded responses.</li>
+              <li>Multi-turn conversations with full context retention — each session builds on prior exchanges without losing coherence across long interactions.</li>
+              <li>Custom knowledge base ingestion pipeline processes raw documents into vector chunks for domain-specific Q&amp;A without retraining the base model.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- P6: Edge AI -->
+      <div class="proj-card reveal fade-up" id="proj-5">
+        <div class="proj-header">
+          <div class="proj-header-left">
+            <div class="proj-meta-row">
+              <span class="proj-date">2023 — 2024</span>
+              <span class="proj-category academic">Edge AI · VIT-AP</span>
+            </div>
+            <div class="proj-title-row">
+              <span class="proj-emoji">👁️</span>
+              <div>
+                <div class="proj-name">Gender ID with Face Mask Detection</div>
+                <div class="proj-subtitle">Real-time edge AI detecting gender for masked individuals using MobileNet + OpenCV on Raspberry Pi — zero cloud dependency.</div>
+              </div>
+            </div>
+            <div class="proj-metrics-row">
+              <div class="proj-metric"><span class="metric-val" data-target="0" data-display="Edge">0</span><span class="metric-lbl">Deploy</span></div>
+              <div class="proj-metric"><span class="metric-val" data-target="0" data-display="Real-Time">0</span><span class="metric-lbl">Inference</span></div>
+              <div class="proj-metric"><span class="metric-val" data-target="0" data-display="0 Cloud">0</span><span class="metric-lbl">Dependency</span></div>
+            </div>
+            <div class="proj-tags-row"><span class="proj-tag">MobileNet</span><span class="proj-tag">OpenCV</span><span class="proj-tag">Python</span><span class="proj-tag">Edge AI</span><span class="proj-tag">Raspberry Pi</span></div>
+          </div>
+          <div class="proj-diagram">
+            <div class="diag-nodes">
+              <div class="diag-node n1">Cam</div>
+              <div class="diag-node n2">CV</div>
+              <div class="diag-node n3">Edge</div>
+            </div>
+            <div class="diag-connector"></div>
+            <div class="diag-label">MobileNet<br>+ OpenCV</div>
+            <div class="diag-spec">Pi · 0 Cloud</div>
+          </div>
+        </div>
+        <div class="proj-actions">
+          <button class="proj-toggle-btn" onclick="toggleProj(5)">View Details <span class="arrow">▼</span></button>
+          <a class="proj-open-btn" onclick="openDetail(5)" href="javascript:void(0)">Open Project →</a>
+        </div>
+        <div class="proj-body">
+          <div class="proj-body-inner">
+            <div class="proj-section-header">Edge Pipeline</div>
+            <ul class="proj-bullets">
+              <li>Python-based real-time gender detection for masked individuals using MobileNet + OpenCV deployed on Raspberry Pi for fully offline edge inference.</li>
+              <li>Optimized model inference and video processing pipeline reducing latency while maintaining accuracy under real-world challenging conditions.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- P7: Emotion -->
+      <div class="proj-card reveal fade-up" id="proj-6">
+        <div class="proj-header">
+          <div class="proj-header-left">
+            <div class="proj-meta-row">
+              <span class="proj-date">2023 — 2024</span>
+              <span class="proj-category academic">Deep Learning · VIT-AP</span>
+            </div>
+            <div class="proj-title-row">
+              <span class="proj-emoji">🎙️</span>
+              <div>
+                <div class="proj-name">Emotion Recognition from Voice</div>
+                <div class="proj-subtitle">RNN/LSTM model classifying 7 emotion classes from voice spectrograms with Flask API and MFCC feature extraction.</div>
+              </div>
+            </div>
+            <div class="proj-metrics-row">
+              <div class="proj-metric"><span class="metric-val" data-target="7" data-suffix=" Classes">0</span><span class="metric-lbl">Emotions</span></div>
+              <div class="proj-metric"><span class="metric-val" data-target="0" data-display="MFCC">0</span><span class="metric-lbl">Features</span></div>
+              <div class="proj-metric"><span class="metric-val" data-target="0" data-display="Flask">0</span><span class="metric-lbl">API Layer</span></div>
+            </div>
+            <div class="proj-tags-row"><span class="proj-tag">RNN / LSTM</span><span class="proj-tag">Flask</span><span class="proj-tag">Python</span><span class="proj-tag">Deep Learning</span><span class="proj-tag">MFCC</span></div>
+          </div>
+          <div class="proj-diagram">
+            <div class="diag-nodes">
+              <div class="diag-node n1">Audio</div>
+              <div class="diag-node n2">LSTM</div>
+              <div class="diag-node n3">API</div>
+            </div>
+            <div class="diag-connector"></div>
+            <div class="diag-label">MFCC Extract<br>+ 7-Class Output</div>
+            <div class="diag-spec">Flask REST · Real-Time</div>
+          </div>
+        </div>
+        <div class="proj-actions">
+          <button class="proj-toggle-btn" onclick="toggleProj(6)">View Details <span class="arrow">▼</span></button>
+          <a class="proj-open-btn" onclick="openDetail(6)" href="javascript:void(0)">Open Project →</a>
+        </div>
+        <div class="proj-body">
+          <div class="proj-body-inner">
+            <div class="proj-section-header">Model Pipeline</div>
+            <ul class="proj-bullets">
+              <li>RNN/LSTM classifying 7 emotions (happy, sad, angry, fearful, disgusted, surprised, neutral) from voice spectrograms using MFCC feature extraction.</li>
+              <li>Lightweight Flask REST API enables real-time emotion inference — any audio clip returns emotion predictions within milliseconds.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- P8: Gastric -->
+      <div class="proj-card reveal fade-up" id="proj-7">
+        <div class="proj-header">
+          <div class="proj-header-left">
+            <div class="proj-meta-row">
+              <span class="proj-date">2023 — 2024</span>
+              <span class="proj-category research">Research · Medical AI</span>
+            </div>
+            <div class="proj-title-row">
+              <span class="proj-emoji">🔬</span>
+              <div>
+                <div class="proj-name">Gastric Carcinoma Detection (Research)</div>
+                <div class="proj-subtitle">Hybrid transfer learning + CNN framework for gastric cancer detection on medical images achieving high diagnostic accuracy.</div>
+              </div>
+            </div>
+            <div class="proj-metrics-row">
+              <div class="proj-metric"><span class="metric-val" data-target="0" data-display="High">0</span><span class="metric-lbl">Accuracy</span></div>
+              <div class="proj-metric"><span class="metric-val" data-target="0" data-display="CNN+TL">0</span><span class="metric-lbl">Architecture</span></div>
+              <div class="proj-metric"><span class="metric-val" data-target="0" data-display="Medical">0</span><span class="metric-lbl">Domain</span></div>
+            </div>
+            <div class="proj-tags-row"><span class="proj-tag">Transfer Learning</span><span class="proj-tag">CNN</span><span class="proj-tag">Medical Imaging</span><span class="proj-tag">Python</span><span class="proj-tag">Research</span></div>
+          </div>
+          <div class="proj-diagram">
+            <div class="diag-nodes">
+              <div class="diag-node n1">Image</div>
+              <div class="diag-node n2">CNN</div>
+              <div class="diag-node n3">Dx</div>
+            </div>
+            <div class="diag-connector"></div>
+            <div class="diag-label">Transfer Learning<br>+ Custom Head</div>
+            <div class="diag-spec">Medical Imaging</div>
+          </div>
+        </div>
+        <div class="proj-actions">
+          <button class="proj-toggle-btn" onclick="toggleProj(7)">View Details <span class="arrow">▼</span></button>
+          <a class="proj-open-btn" onclick="openDetail(7)" href="javascript:void(0)">Open Project →</a>
+        </div>
+        <div class="proj-body">
+          <div class="proj-body-inner">
+            <div class="proj-section-header">Model Architecture</div>
+            <ul class="proj-bullets">
+              <li>Hybrid transfer learning + CNN combining pretrained feature extractors (ResNet/VGG backbone) with custom classification heads for gastric cancer detection.</li>
+              <li>Achieved high diagnostic accuracy on medical image samples — outperforming baseline CNN-only models by leveraging pre-learned ImageNet features.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
 
+<!-- EDUCATION -->
 <section id="education">
   <div class="section-inner">
     <div class="reveal fade-up">
-      <div class="section-tag">Academic Background</div>
+      <div class="section-tag"><span class="section-num">04 /</span> Academic Background</div>
       <h2 class="section-title">Education</h2>
     </div>
     <div class="edu-grid reveal fade-up">
@@ -387,39 +889,283 @@ footer span{color:var(--gold)}
   </div>
 </section>
 
+<!-- CONTACT -->
 <section id="contact">
   <div class="section-inner">
     <div class="reveal fade-up">
-      <div class="section-tag">Let's Connect</div>
-      <h2 class="section-title">Get <span class="gold-text">In Touch</span></h2>
+      <div class="section-tag"><span class="section-num">05 /</span> Let's Connect</div>
+      <h2 class="section-title">Ready to <span class="gold-text">build together</span></h2>
     </div>
     <div class="contact-grid">
       <div class="contact-cards">
-        <div class="contact-card reveal fade-left"><div class="contact-icon">📧</div><div><div class="contact-label">Email</div><div class="contact-val"><a href="mailto:tlalith.usa@gmail.com">tlalith.usa@gmail.com</a></div></div></div>
-        <div class="contact-card reveal fade-left"><div class="contact-icon">📱</div><div><div class="contact-label">Phone</div><div class="contact-val"><a href="tel:9403346482">(940) 334-6482</a></div></div></div>
-        <div class="contact-card reveal fade-left"><div class="contact-icon">📍</div><div><div class="contact-label">Location</div><div class="contact-val">Lewisville, TX</div></div></div>
-        <div class="contact-card reveal fade-left"><div class="contact-icon">✅</div><div><div class="contact-label">Availability</div><div class="contact-val">Open to Full-time &amp; Internship Roles</div></div></div>
-        <div class="contact-card reveal fade-left"><div class="contact-icon">🔗</div><div><div class="contact-label">LinkedIn</div><div class="contact-val"><a href="https://www.linkedin.com/in/t-v-l-bhavani-lalith-6958b72b7/" target="_blank">linkedin.com/in/t-v-l-bhavani-lalith</a></div></div></div>
+        <a class="contact-card reveal fade-left" href="mailto:tlalith.usa@gmail.com">
+          <div class="contact-card-left">
+            <div class="contact-icon">📧</div>
+            <div><div class="contact-label">Email</div><div class="contact-val">tlalith.usa@gmail.com</div></div>
+          </div>
+          <span class="contact-arrow">→</span>
+        </a>
+        <a class="contact-card reveal fade-left" href="https://www.linkedin.com/in/t-v-l-bhavani-lalith-6958b72b7/" target="_blank">
+          <div class="contact-card-left">
+            <div class="contact-icon">🔗</div>
+            <div><div class="contact-label">LinkedIn</div><div class="contact-val">linkedin.com/in/t-v-l-bhavani-lalith</div></div>
+          </div>
+          <span class="contact-arrow">→</span>
+        </a>
+        <div class="contact-card reveal fade-left">
+          <div class="contact-card-left">
+            <div class="contact-icon">📍</div>
+            <div><div class="contact-label">Location</div><div class="contact-val">Lewisville, TX</div></div>
+          </div>
+          <a href="tel:9403346482" style="font-size:.85rem;color:var(--gold2);text-decoration:none">(940) 334-6482</a>
+        </div>
       </div>
-      <div class="contact-avatar-wrap reveal fade-right">
-        <div class="ripple"></div><div class="ripple"></div><div class="ripple"></div>
-        <div class="contact-avatar">LT</div>
+      <div class="avail-panel reveal fade-right">
+        <div class="avail-panel-tag">Availability Status</div>
+        <div class="avail-status">Open to Opportunities</div>
+        <div class="avail-desc">Actively seeking AI Engineer, Full-Stack Cloud, and Gen AI/LLM Engineer roles. Available for full-time positions. Open to remote and hybrid arrangements.</div>
+        <ul class="avail-roles">
+          <li>AI Engineer / LLM Engineer</li>
+          <li>Full-Stack Cloud Developer (AI)</li>
+          <li>Data Scientist / Data Analyst</li>
+          <li>Agentic AI / Gen AI Engineer</li>
+          <li>Start: Immediate / May 2026</li>
+        </ul>
       </div>
     </div>
   </div>
 </section>
 
 <footer><p>Crafted with <span>♥</span> by Lalith Talluri · AI &amp; Full-Stack Cloud Engineer · 2026</p></footer>
+</div><!-- end main-page -->
+
+<!-- ═══════════ PROJECT DETAIL PAGE ═══════════ -->
+<div id="project-detail-page">
+  <div class="detail-nav">
+    <button class="detail-back" onclick="closeDetail()">← Back</button>
+    <div class="detail-breadcrumb">Projects / <span id="detail-breadcrumb-name">Project</span></div>
+  </div>
+  <div class="detail-inner" id="detail-content"></div>
+</div>
 
 <script>
-function navScrollTo(id){const el=document.getElementById(id);if(el)el.scrollIntoView({behavior:'smooth',block:'start'});document.getElementById('navLinks').classList.remove('open')}
-window.addEventListener('load',()=>{setTimeout(()=>{document.getElementById('loader').classList.add('hide')},2200)});
-const dot=document.getElementById('cursor-dot'),ring=document.getElementById('cursor-ring');let mx=0,my=0;
+/* ─ PROJECTS DATA ─ */
+const PROJECTS = [
+  {
+    name:"Smart Campus Resource Management System",
+    nameGold:"Resource Management",
+    date:"Aug 2024 — Present",
+    cat:"Production",
+    catClass:"prod",
+    metrics:[{v:"5+",l:"APIs Built"},{v:"3 Svcs",l:"Azure Services"},{v:"CI/CD",l:"Deployment"}],
+    tags:["React","Azure Functions","Cosmos DB","Claude AI","JWT Auth","CI/CD","Python"],
+    diag:{nodes:["React","API","AI"],label:"Azure Functions\n+ Cosmos DB",spec:"Claude AI · RAG · Timer Triggers"},
+    sections:[
+      {h:"System Architecture",bullets:["Built responsive React + Azure Static Web Apps frontend integrated with secure REST APIs (GET, POST, PATCH) and session-based authentication for room/resource booking.","Developed Python backend on Azure Functions + Cosmos DB implementing booking status logic, timer-triggered reminders, and email notifications for real-time operations.","Built AI-powered assistant using Claude AI for context-aware query handling and automated resource recommendations — reducing manual coordination overhead.","Integrated timezone-aware scheduling, auto-status transitions, and GitHub CI/CD for continuous delivery across the campus management system."]},
+      {h:"Tech Stack",bullets:["Frontend: React + Azure Static Web Apps + JWT session auth","Backend: Python Azure Functions + Cosmos DB + Blob Storage","AI Layer: Claude AI (Anthropic) + LangChain RAG pipeline","DevOps: GitHub Actions CI/CD + Azure DevOps"]}
+    ]
+  },
+  {
+    name:"AI-Powered Tax Document Management Portal",
+    nameGold:"Tax Document Portal",
+    date:"Feb 2026 — Present",
+    cat:"Production · Live",
+    catClass:"prod",
+    metrics:[{v:"5s",l:"Admin Refresh"},{v:"2-Stage",l:"Review Flow"},{v:"10+",l:"API Endpoints"}],
+    tags:["Azure Web Apps","LangChain","RAG","Claude AI","Google OAuth","Tailwind CSS","Cosmos DB"],
+    diag:{nodes:["OAuth","RAG","Blob"],label:"Azure Functions\n+ Cosmos DB",spec:"Claude AI · HuggingFace · 5s Feed"},
+    sections:[
+      {h:"Portal Architecture",bullets:["Built full frontend in Vanilla JS + HTML + Tailwind CSS with Google OAuth + JWT; document uploads/downloads by year and type with real-time filing status.","Engineered Python backend on Azure Functions with Cosmos DB and Azure Blob Storage — REST APIs for a two-stage Approve/Deny pricing review workflow.","Implemented live admin feed auto-refreshing every 5 seconds with searchable, timestamped activity logs for complete pipeline visibility.","Built automated RAG pipeline (Claude AI + LangChain + HuggingFace) for context-aware document analysis and AI-generated responses."]},
+      {h:"AI & Automation",bullets:["RAG pipeline: Claude AI (Anthropic) backbone + LangChain orchestration + HuggingFace Transformers for document embeddings","Admin monitoring: 5-second auto-refresh feed with search, filter, and timestamp for real-time oversight","Security: Google OAuth2 + JWT session tokens + role-based access control"]}
+    ]
+  },
+  {
+    name:"Agentic AI Workflow Orchestrator",
+    nameGold:"Workflow Orchestrator",
+    date:"2025 — Present",
+    cat:"Agentic AI",
+    catClass:"research",
+    metrics:[{v:"4 Agents",l:"Agent Types"},{v:"Tool Use",l:"Integration"},{v:"Vector",l:"Memory"}],
+    tags:["LangGraph","CrewAI","OpenAI","Azure Functions","FAISS","Tool Use","Docker"],
+    diag:{nodes:["Plan","Code","Valid"],label:"LangGraph\nSupervisor Loop",spec:"FAISS Memory · Azure Deploy"},
+    sections:[
+      {h:"Agent Topology",bullets:["Architected multi-agent framework (Planner, Researcher, Code Agent, Validator) coordinated via LangGraph supervisor loop with full tool-use and function-calling.","Deployed as a REST API on Azure Functions — containerized with Docker for auto-scaling and stateless execution per agent invocation.","Integrated FAISS vector memory for cross-session context retention, reducing redundant retrieval and improving coherence across multi-turn tasks."]},
+      {h:"Tech Stack",bullets:["Orchestration: LangGraph + CrewAI supervisor loop","LLM: OpenAI GPT + Claude AI function calling","Memory: FAISS persistent vector store","Deploy: Docker + Azure Functions REST API"]}
+    ]
+  },
+  {
+    name:"LLM Document Intelligence System",
+    nameGold:"Document Intelligence",
+    date:"Feb 2023 — Jun 2023",
+    cat:"Enterprise · The Hartford",
+    catClass:"prod",
+    metrics:[{v:"NL Q&A",l:"Interface"},{v:"2 Tools",l:"BI Platforms"},{v:"Auto",l:"Data Refresh"}],
+    tags:["LLM","FAISS","Semantic Search","Power BI","Tableau","Python","Postman"],
+    diag:{nodes:["PDF","FAISS","BI"],label:"LLM Inference\n+ NL Answers",spec:"Power BI · Tableau · KPIs"},
+    sections:[
+      {h:"Document Pipeline",bullets:["Built LLM-powered document intelligence using FAISS semantic search to summarize PDFs and answer natural-language questions; validated with Postman.","Developed Power BI and Tableau dashboards with automated data refresh to surface KPIs and communicate AI-derived insights to stakeholders."]}
+    ]
+  },
+  {
+    name:"Gen AI Contextual Chatbot (RAG + Memory)",
+    nameGold:"Contextual Chatbot",
+    date:"2024 — 2025",
+    cat:"Gen AI · RAG",
+    catClass:"research",
+    metrics:[{v:"RAG",l:"Architecture"},{v:"Multi-Turn",l:"Context"},{v:"Vector",l:"Memory"}],
+    tags:["RAG","Claude AI","Chroma DB","LangChain","HuggingFace","Vector Search"],
+    diag:{nodes:["Query","Embed","LLM"],label:"FAISS / Chroma\nVector Retrieval",spec:"Claude AI · GPT · Multi-Turn"},
+    sections:[
+      {h:"RAG Pipeline",bullets:["Production RAG chatbot with persistent FAISS/Chroma vector memory using Hugging Face embeddings and Claude/GPT backbone for grounded responses.","Multi-turn conversations with full context retention — sessions build on prior exchanges without losing coherence.","Custom knowledge base ingestion pipeline processes raw documents into vector chunks for domain-specific Q&A without retraining."]}
+    ]
+  },
+  {
+    name:"Gender ID with Face Mask Detection",
+    nameGold:"Face Mask Detection",
+    date:"2023 — 2024",
+    cat:"Edge AI · VIT-AP",
+    catClass:"academic",
+    metrics:[{v:"Edge",l:"Deploy"},{v:"Real-Time",l:"Inference"},{v:"0 Cloud",l:"Dependency"}],
+    tags:["MobileNet","OpenCV","Python","Edge AI","Raspberry Pi"],
+    diag:{nodes:["Cam","CV","Edge"],label:"MobileNet + OpenCV",spec:"Raspberry Pi · Zero Cloud"},
+    sections:[
+      {h:"Edge Pipeline",bullets:["Real-time gender detection for masked individuals using MobileNet + OpenCV on Raspberry Pi for fully offline edge inference.","Optimized model inference and video processing pipeline reducing latency while maintaining classification accuracy."]}
+    ]
+  },
+  {
+    name:"Emotion Recognition from Voice",
+    nameGold:"Emotion Recognition",
+    date:"2023 — 2024",
+    cat:"Deep Learning · VIT-AP",
+    catClass:"academic",
+    metrics:[{v:"7 Classes",l:"Emotions"},{v:"MFCC",l:"Features"},{v:"Flask",l:"API Layer"}],
+    tags:["RNN / LSTM","Flask","Python","Deep Learning","MFCC","NLP"],
+    diag:{nodes:["Audio","LSTM","API"],label:"MFCC Extract\n+ 7-Class Output",spec:"Flask REST · Real-Time"},
+    sections:[
+      {h:"Model Pipeline",bullets:["RNN/LSTM classifying 7 emotions from voice spectrograms using MFCC feature extraction for robust audio preprocessing.","Lightweight Flask REST API enabling real-time emotion inference within milliseconds of audio input."]}
+    ]
+  },
+  {
+    name:"Gastric Carcinoma Detection (Research)",
+    nameGold:"Carcinoma Detection",
+    date:"2023 — 2024",
+    cat:"Research · Medical AI",
+    catClass:"research",
+    metrics:[{v:"High",l:"Accuracy"},{v:"CNN+TL",l:"Architecture"},{v:"Medical",l:"Domain"}],
+    tags:["Transfer Learning","CNN","Medical Imaging","Python","Research"],
+    diag:{nodes:["Image","CNN","Dx"],label:"Transfer Learning\n+ Custom Head",spec:"Medical Imaging · ResNet"},
+    sections:[
+      {h:"Model Architecture",bullets:["Hybrid transfer learning + CNN combining pretrained feature extractors (ResNet/VGG) with custom classification heads for gastric cancer detection.","Achieved high diagnostic accuracy on medical image samples — outperforming baseline CNN-only models using pre-learned ImageNet features."]}
+    ]
+  }
+];
+
+/* ─ TOGGLE PROJECT ─ */
+function toggleProj(idx) {
+  const card = document.getElementById('proj-'+idx);
+  const isOpen = card.classList.contains('open');
+  document.querySelectorAll('.proj-card.open').forEach(c=>c.classList.remove('open'));
+  if(!isOpen){
+    card.classList.add('open');
+    card.querySelectorAll('.metric-val[data-target]').forEach(el=>animateCounter(el));
+  }
+}
+
+function animateCounter(el){
+  const display=el.getAttribute('data-display');
+  if(display){el.textContent=display;return}
+  const target=parseInt(el.getAttribute('data-target'));
+  const suffix=el.getAttribute('data-suffix')||'';
+  if(target===0)return;
+  let s=0;const dur=1000,step=16,inc=target/(dur/step);
+  const t=setInterval(()=>{s+=inc;if(s>=target){el.textContent=target+suffix;clearInterval(t)}else el.textContent=Math.floor(s)+suffix},step);
+}
+
+/* ─ OPEN DETAIL PAGE ─ */
+function openDetail(idx){
+  const p=PROJECTS[idx];
+  document.getElementById('detail-breadcrumb-name').textContent=p.name;
+
+  const catColor = p.catClass==='prod' ? 'var(--teal)' : p.catClass==='research' ? 'var(--gold2)' : 'var(--mid)';
+  const catBg = p.catClass==='prod' ? 'rgba(45,212,191,0.06)' : p.catClass==='research' ? 'rgba(201,148,42,0.08)' : 'transparent';
+  const catBorder = p.catClass==='prod' ? 'rgba(45,212,191,0.3)' : p.catClass==='research' ? 'rgba(201,148,42,0.3)' : 'rgba(168,149,110,0.3)';
+
+  const nodeColors = ['n1','n2','n3'];
+  const diagNodes = p.diag.nodes.map((n,i)=>`<div class="detail-diag-node ${nodeColors[i]}">${n}</div>`).join('');
+
+  const metricsHtml = p.metrics.map(m=>`
+    <div class="detail-metric">
+      <span class="dval">${m.v}</span>
+      <span class="dlbl">${m.l}</span>
+    </div>`).join('');
+
+  const tagsHtml = p.tags.map(t=>`<span class="detail-tag">${t}</span>`).join('');
+
+  const sectionsHtml = p.sections.map(s=>`
+    <div class="detail-section">
+      <div class="detail-section-header">${s.h}</div>
+      <ul class="detail-bullets">
+        ${s.bullets.map(b=>`<li>${b}</li>`).join('')}
+      </ul>
+    </div>`).join('');
+
+  document.getElementById('detail-content').innerHTML=`
+    <div class="detail-meta-row">
+      <span class="detail-date">${p.date}</span>
+      <span class="proj-category ${p.catClass}" style="color:${catColor};border-color:${catBorder};background:${catBg}">${p.cat}</span>
+    </div>
+    <div class="detail-grid">
+      <div>
+        <h1 class="detail-title">${p.name.replace(p.nameGold,`<span class="gold">${p.nameGold}</span>`)}</h1>
+        <div class="detail-metrics-row">${metricsHtml}</div>
+        <div class="detail-tags">${tagsHtml}</div>
+      </div>
+      <div class="detail-diagram-panel">
+        <div class="detail-diag-title">// System Diagram</div>
+        <div class="detail-diag-nodes">${diagNodes}</div>
+        <div class="detail-diag-connector"></div>
+        <div class="detail-diag-spec">${p.diag.label.replace('\n','<br>')}<br><span style="color:var(--teal)">${p.diag.spec}</span></div>
+      </div>
+    </div>
+    ${sectionsHtml}`;
+
+  document.getElementById('project-detail-page').classList.add('active');
+  document.getElementById('main-page').style.overflow='hidden';
+  document.getElementById('project-detail-page').scrollTop=0;
+}
+
+function closeDetail(){
+  document.getElementById('project-detail-page').classList.remove('active');
+  document.getElementById('main-page').style.overflow='';
+}
+
+/* ─ NAV SCROLL ─ */
+function navScrollTo(id){
+  const el=document.getElementById(id);
+  if(el)el.scrollIntoView({behavior:'smooth',block:'start'});
+  document.getElementById('navLinks').classList.remove('open');
+}
+
+/* ─ LOADER ─ */
+window.addEventListener('load',()=>{setTimeout(()=>document.getElementById('loader').classList.add('hide'),2200)});
+
+/* ─ CURSOR ─ */
+const dot=document.getElementById('cursor-dot'),ring=document.getElementById('cursor-ring');
+let mx=0,my=0;
 document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.left=mx+'px';dot.style.top=my+'px'});
 (function animRing(){const rx=parseFloat(ring.style.left)||mx,ry=parseFloat(ring.style.top)||my;ring.style.left=(rx+(mx-rx)*0.15)+'px';ring.style.top=(ry+(my-ry)*0.15)+'px';requestAnimationFrame(animRing)})();
-document.querySelectorAll('a,button,.btn,.proj-card,.timeline-item').forEach(el=>{el.addEventListener('mouseenter',()=>{ring.style.transform='translate(-50%,-50%) scale(1.5)';ring.style.borderColor='var(--gold)'});el.addEventListener('mouseleave',()=>{ring.style.transform='translate(-50%,-50%) scale(1)'})});
-const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')})},{threshold:0.12});document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-const barObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.style.width=e.target.getAttribute('data-pct')+'%';barObs.unobserve(e.target)}})},{threshold:0.4});document.querySelectorAll('.skill-bar-fill').forEach(b=>barObs.observe(b));
+document.querySelectorAll('a,button,.btn,.proj-card,.timeline-item,.contact-card').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{ring.style.transform='translate(-50%,-50%) scale(1.5)';ring.style.borderColor='var(--gold2)'});
+  el.addEventListener('mouseleave',()=>{ring.style.transform='translate(-50%,-50%) scale(1)';ring.style.borderColor='var(--gold)'});
+});
+
+/* ─ SCROLL REVEAL ─ */
+const io=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible')}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+/* ─ SKILL BARS ─ */
+const barObs=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){x.target.style.width=x.target.getAttribute('data-pct')+'%';barObs.unobserve(x.target)}}),{threshold:.4});
+document.querySelectorAll('.skill-bar-fill').forEach(b=>barObs.observe(b));
 </script>
 </body>
 </html>
